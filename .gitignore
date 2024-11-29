@@ -1,0 +1,20 @@
+# Local environment
+node_modules/
+.venv/
+.vscode/
+.idea/
+
+# Builds
+build/
+
+# Doxygen outputs
+doxygen_output/
+doc/.directory
+
+# Local files
+*.csv
+*.jpg
+*.xlsx
+*.txt
+*.pyc
+docs.html
