@@ -1,5 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server');
-const sessions = require('./data/sessions.json');
+const SessionsAPI = require('./datasources/sessions');
 
 const typeDefs = gql`
   type Query {
@@ -20,11 +20,17 @@ const typeDefs = gql`
 
 const resolvers = {
   Query: {
-    sessions: () => sessions
+    sessions: (parents, args, {dataSources}, info) => {
+      return dataSources.SessionsAPI.getSessions();
+    }
   }
-}
+};
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const dataSources = () => ({
+  sessionsAPI: new SessionsAPI()
+});
+
+const server = new ApolloServer({ typeDefs, resolvers, dataSources });
 
 server
   .listen({port: process.env.PORT || 4000 })

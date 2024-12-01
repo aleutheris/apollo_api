@@ -1,7 +1,6 @@
 {
   "name": "apollo_api",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,7 +9,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "apollo-datasource": "^3.3.2",
     "apollo-server": "2.12",
     "nodemon": "2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aleutheris/apollo_api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aleutheris/apollo_api/issues"
+  },
+  "homepage": "https://github.com/aleutheris/apollo_api#readme",
+  "description": ""
 }
