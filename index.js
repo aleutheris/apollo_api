@@ -14,7 +14,7 @@ const typeDefs = gql`
     room: String,
     day: String,
     format: String,
-    track: String,
+    track: String @deprecated(reason: "Too many sessions do not fit into a single track, we will be migrating to tags based system in the future..."),
     level: String
 }`
 
