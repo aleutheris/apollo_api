@@ -21,7 +21,7 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     sessions: (parents, args, {dataSources}, info) => {
-      return dataSources.SessionsAPI.getSessions();
+      return dataSources.sessionsAPI.getSessions();
     }
   }
 };
