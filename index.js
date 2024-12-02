@@ -3,26 +3,36 @@ const SessionsAPI = require('./datasources/sessions');
 
 const typeDefs = gql`
   type Query {
-    sessions: [Session]
+    sessions(
+      id: ID
+      title: String
+      description: String
+      startsAt: String
+      endsAt: String
+      room: String
+      day: String
+      format: String
+      track: String
+      level: String): [Session]
     sessionById(id: ID): Session
   }
   type Session {
     id: ID!
-    title: String!,
-    description: String,
-    startsAt: String,
-    endsAt: String,
-    room: String,
-    day: String,
-    format: String,
-    track: String @deprecated(reason: "Too many sessions do not fit into a single track, we will be migrating to tags based system in the future..."),
+    title: String!
+    description: String
+    startsAt: String
+    endsAt: String
+    room: String
+    day: String
+    format: String
+    track: String @deprecated(reason: "Too many sessions do not fit into a single track, we will be migrating to tags based system in the future...")
     level: String
 }`
 
 const resolvers = {
   Query: {
     sessions: (parents, args, {dataSources}, info) => {
-      return dataSources.sessionsAPI.getSessions();
+      return dataSources.sessionsAPI.getSessions(args);
     },
     sessionById: (parents, {id}, {dataSources}, info) => {
       return dataSources.sessionsAPI.getSessionById(id);
