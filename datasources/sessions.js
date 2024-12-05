@@ -2,7 +2,7 @@ const sessions = require('../data/sessions.json');
 const {DataSource} = require('apollo-datasource');
 const _ = require('lodash');
 
-class SessionsAPI extends DataSource {
+class SessionAPI extends DataSource {
   constructor() {
     super();
   }
@@ -19,4 +19,4 @@ class SessionsAPI extends DataSource {
   }
 }
 
-module.exports = SessionsAPI;
+module.exports = SessionAPI;
