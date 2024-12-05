@@ -1,50 +1,21 @@
 const { ApolloServer, gql } = require('apollo-server');
 const SessionsAPI = require('./datasources/sessions');
 
-const typeDefs = gql`
-  type Query {
-    sessions(
-      id: ID
-      title: String
-      description: String
-      startsAt: String
-      endsAt: String
-      room: String
-      day: String
-      format: String
-      track: String
-      level: String): [Session]
-    sessionById(id: ID): Session
-  }
-  type Session {
-    id: ID!
-    title: String!
-    description: String
-    startsAt: String
-    endsAt: String
-    room: String
-    day: String
-    format: String
-    track: String @deprecated(reason: "Too many sessions do not fit into a single track, we will be migrating to tags based system in the future...")
-    level: String
-}`
+const typeDefs = require('./schema.js');
 
-const resolvers = {
-  Query: {
-    sessions: (parents, args, {dataSources}, info) => {
-      return dataSources.sessionsAPI.getSessions(args);
-    },
-    sessionById: (parents, {id}, {dataSources}, info) => {
-      return dataSources.sessionsAPI.getSessionById(id);
-    }
-  }
-};
+const resolvers = require('./resolvers.js');
 
 const dataSources = () => ({
   sessionsAPI: new SessionsAPI()
 });
 
-const server = new ApolloServer({ typeDefs, resolvers, dataSources });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  dataSources,
+  instrospection: false,
+  playground: true,
+ });
 
 server
   .listen({port: process.env.PORT || 4000 })

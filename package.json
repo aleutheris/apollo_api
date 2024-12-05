@@ -22,5 +22,10 @@
     "apollo-server": "2.12",
     "nodemon": "2.0",
     "lodash": "^4.17"
+  },
+  "nodemonConfig": {
+    "env": {
+      "NODE_ENV": "development"
+    }
   }
 }
