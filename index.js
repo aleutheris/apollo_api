@@ -14,7 +14,7 @@ const server = new ApolloServer({
   resolvers,
   dataSources,
   instrospection: false,
-  playground: true,
+  playground: true
  });
 
 server
